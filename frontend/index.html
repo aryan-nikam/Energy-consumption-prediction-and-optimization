@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Consumption Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        select, input { width: 100%; padding: 10px; }
+        .result { margin-top: 20px; }
+    </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://www.sunbirddcim.com/sites/default/files/AdobeStock_399949967.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: rgb(0, 128, 43); /* Adds a purple background color */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        
+    
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border: 2px solid #00b63a;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #00b624;
+            font-size: 26px;
+        }
+    
+        .form-group {
+            margin-bottom: 15px;
+        }
+    
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #028a2d;
+        }
+    
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        select:hover, input:hover {
+            border-color: #00b618;
+        }
+    
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00b624;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+    
+        button:hover {
+            background-color: #008b1c;
+        }
+    
+        .result {
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+            color: #00b646;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Energy Consumption Prediction</h1>
+        <form id="prediction-form">
+            <div class="form-group">
+                <label for="year">Year</label>
+                <select id="year" name="year">
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="month">Month</label>
+                <select id="month" name="month">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="day_of_week">Day of the Week</label>
+                <select id="day_of_week" name="day_of_week">
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                    <option value="7">Sunday</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hour">Hour</label>
+                <select id="hour" name="hour">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="temperature">Temperature</label>
+                <input type="number" id="temperature" name="temperature" placeholder="Enter temperature" required>
+            </div>
+            <div class="form-group">
+                <label for="humidity">Humidity</label>
+                <input type="number" id="humidity" name="humidity" placeholder="Enter humidity" required>
+            </div>
+            <div class="form-group">
+                <label for="occupancy_level">Occupancy Level</label>
+                <input type="number" id="occupancy_level" name="occupancy_level" placeholder="Enter occupancy level" required>
+            </div>
+            <div class="form-group">
+                <label for="is_holiday">Is it a Holiday?</label>
+                <select id="is_holiday" name="is_holiday">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="num_fans_on">Number of Fans On</label>
+                <input type="number" id="num_fans_on" name="num_fans_on" placeholder="Enter number of fans on" required>
+            </div>
+            <div class="form-group">
+                <label for="num_bulbs_on">Number of Light Bulbs On</label>
+                <input type="number" id="num_bulbs_on" name="num_bulbs_on" placeholder="Enter number of light bulbs on" required>
+            </div>
+            <button type="submit">Get Prediction</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
